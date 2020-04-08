@@ -2,6 +2,47 @@ body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
+}
+
+@media (max-width: 680px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+table {
+  color: #565656;
+  table-layout: fixed;
+  margin: auto;
+  max-width: 800px;
+  font-family: 'Roboto', sans-serif;
+  text-align: end;
+  border-radius: 6px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #F9F9F9;
+}
+
+.tr-headers > th {
+  text-align: center;
+}
+
+th:not(.table-main-head) {
+  font-weight: normal;
+}
+
+th, td {
+  padding: .625em 1em;
+  border: 1px solid #fff;
+  text-align: left;
+}
+
+.current-day {
+  background-color: #EEFAFF;
+}
+
+.chart {
+  /*display: none;*/
+  background-color: #fff;
 }
