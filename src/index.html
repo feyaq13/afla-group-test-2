@@ -21,73 +21,16 @@
     <th>Этот день недели</th>
   </tr>
   </thead>
-  <tr>
-    <th>Выручка</th>
-    <td class="current-day">500521</td>
-    <td>480521</td>
-    <td class="percentage-of-deviation">-44%</td>
-    <td>480521</td>
-  </tr>
-  <tr class="chart">
-    <th colspan="5"></th>
-  </tr>
-  <tr>
-    <th>Наличные</th>
-    <td class="current-day">300000</td>
-    <td>300000</td>
-    <td class="percentage-of-deviation">-3%</td>
-    <td>100000</td>
-  </tr>
-  <tr>
-    <th>Кредитные карты</th>
-    <td class="current-day">100521</td>
-    <td>100521</td>
-    <td class="percentage-of-deviation">-3%</td>
-    <td>100521</td>
-  </tr>
-  <tr>
-    <th>Средний чек, руб</th>
-    <td class="current-day">1300</td>
-    <td>900</td>
-    <td class="percentage-of-deviation">44%</td>
-    <td>900</td>
-  </tr>
-  <tr>
-    <th>Средний гость, руб</th>
-    <td class="current-day">1200</td>
-    <td>800</td>
-    <td class="percentage-of-deviation">45%</td>
-    <td>800</td>
-  </tr>
-  <tr>
-    <th>Удаление из&nbsp;чека (после оплаты), руб</th>
-    <td class="current-day">1000</td>
-    <td>1100</td>
-    <td class="percentage-of-deviation">-10%</td>
-    <td>900</td>
-  </tr>
-  <tr>
-    <th>Удаление из&nbsp;счета (до&nbsp;оплаты), руб</th>
-    <td class="current-day">1300</td>
-    <td>1300</td>
-    <td class="percentage-of-deviation">-7%</td>
-    <td>900</td>
-  </tr>
-  <tr>
-    <th>Количество чеков</th>
-    <td class="current-day">34</td>
-    <td>36</td>
-    <td class="percentage-of-deviation">-5%</td>
-    <td>34</td>
-  </tr>
-  <tr>
-    <th>Количество гостей</th>
-    <td class="current-day">34</td>
-    <td>36</td>
-    <td class="percentage-of-deviation">-5%</td>
-    <td>32</td>
+  <tr class="revenue-chart">
+    <td id="chart" colspan="5"></td>
   </tr>
 </table>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="scripts.js"></script>
 </body>
 </html>
