@@ -42,6 +42,14 @@ th, td {
   background-color: #EEFAFF;
 }
 
+.percentage-of-deviation.positive {
+  color: #008000;
+}
+
+.percentage-of-deviation.negative {
+  color: #ff0000;
+}
+
 .revenue-chart {
   /*display: none;*/
   background-color: #fff;
