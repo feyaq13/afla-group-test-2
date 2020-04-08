@@ -6,6 +6,8 @@ const percentageOfDeviation = tableElement.getElementsByClassName('percentage-of
 const series = [
   {
     name: 'Выручка',
+    cssClass: 'revenue',
+    visible: false,
     data: [
       500521,
       480521,
@@ -19,6 +21,8 @@ const series = [
   },
   {
     name: 'Наличные',
+    cssClass: 'cash',
+    visible: false,
     data: [
       300000,
       300000,
@@ -32,6 +36,8 @@ const series = [
   },
   {
     name: 'Безналичный расчет',
+    cssClass: 'cashless',
+    visible: false,
     data: [
       100000,
       100000,
@@ -45,6 +51,8 @@ const series = [
   },
   {
     name: 'Кредитные карты',
+    cssClass: 'credit',
+    visible: false,
     data: [
       100521,
       100521,
@@ -58,6 +66,8 @@ const series = [
   },
   {
     name: 'Средний чек, руб',
+    cssClass: 'average-check',
+    visible: false,
     data: [
       1300,
       900,
@@ -71,6 +81,8 @@ const series = [
   },
   {
     name: 'Средний гость, руб',
+    cssClass: 'average-guest',
+    visible: false,
     data: [
       1200,
       800,
@@ -84,6 +96,8 @@ const series = [
   },
   {
     name: 'Удаление из чека (после оплаты), руб',
+    cssClass: 'deletion-from-check',
+    visible: false,
     data: [
       1000,
       1100,
@@ -97,6 +111,8 @@ const series = [
   },
   {
     name: 'Удаление из счета (до оплаты), руб',
+    cssClass: 'deletion-from-account',
+    visible: false,
     data: [
       1300,
       1300,
@@ -110,6 +126,8 @@ const series = [
   },
   {
     name: 'Количество чеков',
+    cssClass: 'number-of-checks',
+    visible: false,
     data: [
       34,
       36,
@@ -123,6 +141,8 @@ const series = [
   },
   {
     name: 'Количество гостей',
+    cssClass: 'number-of-guests',
+    visible: false,
     data: [
       34,
       36,
@@ -137,12 +157,14 @@ const series = [
 ];
 
 const table = document.querySelector('table');
+const template = document.getElementById('template-chart').content.cloneNode(true);
 
 series.forEach(record => {
   const [today, yesterday, three, four, five, six, week] = record.data;
 
   const tableRow = document.createElement('tr');
-  tableRow.classList.add('revenue');
+  tableRow.classList.add(record.cssClass);
+  tableRow._record = record;
   table.appendChild(tableRow);
 
   const tableNameHeader = document.createElement('th');
@@ -165,9 +187,9 @@ series.forEach(record => {
   const percentChange = (today * 100) / week - 100;
 
   if (percentChange < 0) {
-    tableDataPercentageDeviation.classList.add('POSITIVE_CLASS');
+    tableDataPercentageDeviation.classList.add('negative');
   } else if (percentChange > 0) {
-    tableDataPercentageDeviation.classList.add('NEGATIVE_CLASS');
+    tableDataPercentageDeviation.classList.add('positive');
   }
 
   tableDataPercentageDeviation.innerText = percentChange.toFixed(0) + '%';
@@ -178,31 +200,15 @@ series.forEach(record => {
   tableRow.appendChild(tableDataWeekDay);
 });
 
-// function selectPercentageOfDeviation() {
-//   Array.prototype.forEach.call(percentageOfDeviation, function (percentageNumber) {
-//     let number = Number.parseInt(percentageNumber.innerText);
-//     if (number > 0) {
-//       percentageNumber.style.color = 'green';
-//     } else {
-//       percentageNumber.style.color = 'red';
-//     }
-//   });
-// }
+// table.addEventListener('click', (e) => {
+//   const tableRow = e.target.closest('tr');
+//   console.dir(e.target.closest('tr'));
+// });
 
-// let money = Array.prototype.filter.call(tableElement.getElementsByTagName('td'), function (cell) {
-//     return !cell.classList.contains('percentage-of-deviation');
-//   }
-// ).map(cell => cell.innerText);
-
-// console.log(money);
+table.appendChild(template);
 
 function addDecimalSeparators(rawNumber) {
   return Number.parseInt(rawNumber).toLocaleString('ru-RU', {useGrouping: true});
-  // Array.prototype.forEach.call(tableElement.getElementsByTagName('td'), function (cell) {
-  //   if (!cell.classList.contains('percentage-of-deviation')) {
-  //     cell.innerText = Number.parseInt(cell.innerText).toLocaleString('ru-RU', {useGrouping: true});
-  //   }
-  // });
 }
 
 Highcharts.chart('chart', {
@@ -228,9 +234,7 @@ Highcharts.chart('chart', {
   },
 
   legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
+    enabled: false,
   },
 
   plotOptions: {
